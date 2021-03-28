@@ -107,7 +107,7 @@ def buildLargeMenu(numItems, maxVal, maxCost):
                           random.randint(1, maxCost)))
     return items
 
-#for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45):
+# for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45):
 #    print('Try a menu with', numItems, 'items')
 #    items = buildLargeMenu(numItems, 90, 250)
 #    testMaxVal(items, 750, False)  
@@ -118,7 +118,7 @@ def fib(n):
     else:
         return fib(n - 1) + fib(n - 2)
 
-#for i in range(121):
+# for i in range(121):
 #    print('fib(' + str(i) + ') =', fib(i))
 
 
@@ -134,7 +134,7 @@ def fastFib(n, memo = {}):
         memo[n] = result
         return result
 
-#for i in range(121):
+# for i in range(121):
 #    print('fib(' + str(i) + ') =', fastFib(i))
 
 def fastMaxVal(toConsider, avail, memo = {}):
@@ -177,6 +177,6 @@ def testMaxVal(foods, maxUnits, algorithm, printItems = True):
         for item in taken:
             print('   ', item)
           
-#for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50):
+# for numItems in (5, 10, 15, 20, 25, 30, 35, 40, 45, 50):
 #    items = buildLargeMenu(numItems, 90, 250)
 #    testMaxVal(items, 750, fastMaxVal, True)
