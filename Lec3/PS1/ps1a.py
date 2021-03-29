@@ -24,8 +24,15 @@ def load_cows(filename):
     Returns:
     a dictionary of cow name (string), weight (int) pairs
     """
-    # TODO: Your code here
-    pass
+    cows = {}
+    f = open(filename, "r")
+    for line in f:
+        cow = line.strip('\n').split(',')
+        cows[cow[0]] = cow[1]
+    f.close
+    return cows
+
+cows = load_cows("ps1_cow_data.txt")
 
 # Problem 2
 def greedy_cow_transport(cows,limit=10):
@@ -50,8 +57,22 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    ## Sort remaining cows by weight
+    cows_sorted = sorted(cows, key = cows.get, reverse=True)
+    result = []
+    while len(cows_sorted) > 0:
+        trip = []
+        trip_weight = 0
+        for cow in cows_sorted:
+            if int(cows.get(cow)) + trip_weight <= limit:
+                trip.append(cow)
+                trip_weight += int(cows.get(cow))
+        for cow in trip:
+            cows_sorted.remove(cow)
+        result.append(trip)
+    return result
+
+# print(greedy_cow_transport(cows))
 
 # Problem 3
 def brute_force_cow_transport(cows,limit=10):
@@ -75,9 +96,24 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
-        
+    cow_list = list(cows.keys())
+    for partition in get_partitions(cow_list):
+        valid = True
+        for trip in partition:
+            trip_weight = 0
+            for cow in trip:
+                trip_weight += int(cows.get(cow))
+            if trip_weight <= limit:
+                valid *= True
+            else:
+                valid *= False
+        if valid:
+            return partition
+    raise ValueError("No possible solutions")
+
+# print(brute_force_cow_transport(cows))
+# print(cows)
+
 # Problem 4
 def compare_cow_transport_algorithms():
     """
@@ -92,5 +128,16 @@ def compare_cow_transport_algorithms():
     Returns:
     Does not return anything.
     """
-    # TODO: Your code here
-    pass
+    start = time.time()
+    greedy = greedy_cow_transport(cows)
+    end = time.time()
+    trips = len(greedy)
+    print(f"Greedy algorithm: {trips} trips calculated in {end-start} seconds")
+
+    start = time.time()
+    brute = brute_force_cow_transport(cows)
+    end = time.time()
+    trips = len(brute)
+    print(f"Brute Force algorithm: {trips} trips calculated in {end-start} seconds")
+
+compare_cow_transport_algorithms()
