@@ -108,7 +108,7 @@ def simWalks(numSteps, numTrials, dClass):
         f = Field()
         f.addDrunk(Homer, origin)
         distances.append(round(walk(f, Homer,
-                                    numTrials), 1))
+                                    numSteps), 1))
     return distances
 
 def drunkTest(walkLengths, numTrials, dClass):
@@ -122,22 +122,24 @@ def drunkTest(walkLengths, numTrials, dClass):
         print(' Mean =', round(sum(distances)/len(distances), 4))
         print(' Max =', max(distances), 'Min =', min(distances))
         
-random.seed(0)
-drunkTest((10, 100, 1000, 10000), 100, UsualDrunk)
+# random.seed(0)
+# drunkTest((10, 100, 1000, 10000), 100, UsualDrunk)
 #
-def simAll(drunkKinds, walkLengths, numTrials):
-    for dClass in drunkKinds:
-        drunkTest(walkLengths, numTrials, dClass)
+# def simAll(drunkKinds, walkLengths, numTrials):
+#     for dClass in drunkKinds:
+#         drunkTest(walkLengths, numTrials, dClass)
         
-random.seed(0)
-simAll((UsualDrunk, MasochistDrunk),
-      (1000, 10000), 100)
+# random.seed(0)
+# simAll((UsualDrunk, MasochistDrunk),
+#       (1000, 10000), 100)
        
 # xVals = [1, 2, 3, 4]
 # yVals1 = [1, 2, 3, 4]
 # pylab.plot(xVals, yVals1, 'b-', label = 'first')
 # yVals2 = [1, 7, 3, 5]
 # pylab.plot(xVals, yVals2, 'r--', label = 'second')
+# pylab.legend()
+# pylab.show()
 
 class styleIterator(object):
     def __init__(self, styles):
@@ -185,12 +187,13 @@ def simAll(drunkKinds, walkLengths, numTrials):
 # pylab.plot(numSteps, pylab.array(numSteps)*0.05, 'g-.',
 #           label = 'numSteps*0.05')
 # pylab.legend(loc = 'best')
+# pylab.show()
 
 def getFinalLocs(numSteps, numTrials, dClass):
     locs = []
     d = dClass()
     for t in range(numTrials):
-        f = OddField()
+        f = Field()
         f.addDrunk(d, Location(0, 0))
         for s in range(numSteps):
             f.moveDrunk(d)
@@ -222,8 +225,9 @@ def plotLocs(drunkKinds, numSteps, numTrials):
     pylab.ylabel('Steps North/South of Origin')
     pylab.legend(loc = 'lower center')
 
-#random.seed(0)
-#plotLocs((UsualDrunk, MasochistDrunk), 10000, 1000)
+# random.seed(0)
+# plotLocs((UsualDrunk, MasochistDrunk), 10000, 1000)
+# pylab.show()
 
 class OddField(Field):
     def __init__(self, numHoles = 1000,
@@ -269,7 +273,8 @@ def traceWalk(fieldKinds, numSteps):
     pylab.ylabel('Steps North/South of Origin')
     pylab.legend(loc = 'best')
 
-#random.seed(0)
-#traceWalk((Field, OddField), 500)
+random.seed(0)
+traceWalk((Field, OddField), 500)
+pylab.show()
 
 
