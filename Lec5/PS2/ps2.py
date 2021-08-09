@@ -43,12 +43,28 @@ def load_map(map_filename):
         a Digraph representing the map
     """
 
-    # TODO
     print("Loading map from file...")
+    mit_map = Digraph()
+    with open(map_filename, "r") as f:
+        for line in f:
+            src, dest, total_distance, outdoor_distance = line.split()
+            Nodes = [Node(src), Node(dest)]
+            for node in Nodes:
+                if not mit_map.has_node(node):
+                    mit_map.add_node(node)
+            mit_map.add_edge(WeightedEdge(Nodes[0], Nodes[1], total_distance, outdoor_distance))
+    return mit_map
+
 
 # Problem 2c: Testing load_map
 # Include the lines used to test load_map below, but comment them out
+def test_load_map(map_filename):
+    mit_map = load_map(map_filename)
+    for node in mit_map.nodes:
+        for edge in mit_map.get_edges_for_node(node):
+            print(edge)
 
+# test_load_map("mit_map.txt")
 
 #
 # Problem 3: Finding the Shorest Path using Optimized Search Method
@@ -95,9 +111,38 @@ def get_best_path(digraph, start, end, path, max_dist_outdoors, best_dist,
         If there exists no path that satisfies max_total_dist and
         max_dist_outdoors constraints, then return None.
     """
-    # TODO
-    pass
+    # global path_dist, path_outdoor_dist
+    # if not (digraph.has_node(Node(start)) and digraph.has_node(Node(end))):
+    #     raise ValueError("Start/End Node not valid")
+    # elif start == end:
+    #     if path_dist <= best_dist and path_outdoor_dist <= max_dist_outdoors:
+    #         best_dist = path_dist
+    # else:
 
+    print(f"start = {start} end = {end}")
+    global path_dist, path_outdoor_dist
+    if not (digraph.has_node(Node(start)) and digraph.has_node(Node(end))):
+        raise ValueError("Start/End Node not valid")
+    elif start == end:
+        if path_dist <= best_dist and path_outdoor_dist <= max_dist_outdoors:
+            return (path, path_dist)
+    else:
+        if digraph.get_edges_for_node(Node(start)) != []:
+            for edge in digraph.get_edges_for_node(Node(start)):
+                child = edge.get_destination()
+                if child not in path:
+                    path.append(child)
+                    path_dist += int(edge.get_total_distance())
+                    path_outdoor_dist += int(edge.get_outdoor_distance())
+                    print(path, path_dist, path_outdoor_dist)
+                    if path_dist <= best_dist and path_outdoor_dist <= max_dist_outdoors:
+                        test = get_best_path(digraph, child.get_name(), end, path, max_dist_outdoors, best_dist, best_path)
+                    else:
+                        path_dist = 0
+                        path_outdoor_dist = 0
+                        break
+        else: 
+            path = []
 
 # Problem 3c: Implement directed_dfs
 def directed_dfs(digraph, start, end, max_total_dist, max_dist_outdoors):
@@ -128,8 +173,16 @@ def directed_dfs(digraph, start, end, max_total_dist, max_dist_outdoors):
         If there exists no path that satisfies max_total_dist and
         max_dist_outdoors constraints, then raises a ValueError.
     """
-    # TODO
-    pass
+    best_dist = max_total_dist
+    best_path = []
+    path = []
+    path.append(Node(start))
+    global path_dist, path_outdoor_dist
+    path_dist = 0
+    path_outdoor_dist = 0
+    return get_best_path(digraph, start, end, path, max_dist_outdoors, best_dist, best_path)
+
+
 
 
 # ================================================================
