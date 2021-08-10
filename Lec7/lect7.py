@@ -60,35 +60,37 @@ def getMeanAndStd(X):
     std = (tot/len(X))**0.5
     return mean, std
 
-#random.seed(1)
-#dist, numSamples = [], 1000000
-#
-#for i in range(numSamples):
+# random.seed(1)
+# dist, numSamples = [], 1000000
+
+# for i in range(numSamples):
 #    dist.append(random.gauss(0, 100))
-#    
-#weights = [1/numSamples]*len(dist)
-#v = pylab.hist(dist, bins = 100,
+   
+# weights = [1/numSamples]*len(dist)
+# v = pylab.hist(dist, bins = 100,
 #               weights = [1/numSamples]*len(dist))
-#               
-#print('Fraction within ~200 of mean =',
+              
+# print('Fraction within ~200 of mean =',
 #      sum(v[0][30:70]))
-#
-#def gaussian(x, mu, sigma):
+# pylab.show()
+
+
+
+# def gaussian(x, mu, sigma):
 #  factor1 = (1.0/(sigma*((2*pylab.pi)**0.5)))
 #  factor2 = pylab.e**-(((x-mu)**2)/(2*sigma**2))
 #  return factor1*factor2
-#  
-#xVals, yVals = [], []
-#mu, sigma = 0, 1
-#x = -4
-#while x <= 4:
+ 
+# xVals, yVals = [], []
+# mu, sigma = 0, 1
+# x = -4
+# while x <= 4:
 #    xVals.append(x)
 #    yVals.append(gaussian(x, mu, sigma))
 #    x += 0.05
-#pylab.plot(xVals, yVals)
-#pylab.title('Normal Distribution, mu = ' + str(mu)\
+# pylab.plot(xVals, yVals)
+# pylab.title('Normal Distribution, mu = ' + str(mu)\
 #            + ', sigma = ' + str(sigma))
-#
 
 import scipy.integrate
 
@@ -105,10 +107,10 @@ def checkEmpirical(numTrials):
         print(' Fraction within', numStd,
               'std =', round(area, 4))
         
-#checkEmpirical(3)
+# checkEmpirical(3)
 
-##Test CLT
-#def plotMeans(numDice, numRolls, numBins, legend, color, style):
+# #Test CLT
+# def plotMeans(numDice, numRolls, numBins, legend, color, style):
 #    means = []
 #    for i in range(numRolls//numDice):
 #        vals = 0
@@ -119,31 +121,32 @@ def checkEmpirical(numTrials):
 #               weights = [1/len(means)]*len(means),
 #               hatch = style)
 #    return getMeanAndStd(means)
-# 
-#mean, std = plotMeans(1, 1000000, 19, '1 die', 'b', '*')
-#print('Mean of rolling 1 die =', str(mean) + ',', 'Std =', std)
-#mean, std = plotMeans(50, 1000000, 19, 'Mean of 50 dice', 'r', '//')
-#print('Mean of rolling 50 dice =', str(mean) + ',', 'Std =', std)
-#pylab.title('Rolling Continuous Dice')
-#pylab.xlabel('Value')
-#pylab.ylabel('Probability')
-#pylab.legend()
 
-##Test CLT
-#numTrials = 1000000
-#numSpins = 200
-#game = FairRoulette()
-#
-#means = []
-#for i in range(numTrials):
-#    means.append(findPocketReturn(game, 1, numSpins,
+# mean, std = plotMeans(1, 1000000, 19, '1 die', 'b', '*')
+# print('Mean of rolling 1 die =', str(mean) + ',', 'Std =', std)
+# mean, std = plotMeans(50, 1000000, 19, 'Mean of 50 dice', 'r', '//')
+# print('Mean of rolling 50 dice =', str(mean) + ',', 'Std =', std)
+# pylab.title('Rolling Continuous Dice')
+# pylab.xlabel('Value')
+# pylab.ylabel('Probability')
+# pylab.legend()
+
+# #Test CLT
+# numTrials = 100000
+# numSpins = 200
+# game = FairRoulette()
+
+# means = []
+# for i in range(numTrials):
+#     means.append(findPocketReturn(game, 1, numSpins,
 #                                  False)[0])
-#
-#pylab.hist(means, bins = 19,
+
+# pylab.hist(means, bins = 19,
 #           weights = [1/len(means)]*len(means))
-#pylab.xlabel('Mean Return')
-#pylab.ylabel('Probability')
-#pylab.title('Expected Return Betting a Pocket 200 Times')
+# pylab.xlabel('Mean Return')
+# pylab.ylabel('Probability')
+# pylab.title('Expected Return Betting a Pocket 200 Times')
+# pylab.plot()
 
 def throwNeedles(numNeedles):
     inCircle = 0
@@ -152,7 +155,7 @@ def throwNeedles(numNeedles):
         y = random.random()
         if (x*x + y*y)**0.5 <= 1.0:
             inCircle += 1
-    return 2*(inCircle/float(numNeedles))
+    return 4*(inCircle/float(numNeedles))
     
 def getEst(numNeedles, numTrials):
     estimates = []
