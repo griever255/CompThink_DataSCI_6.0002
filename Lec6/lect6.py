@@ -45,11 +45,11 @@ def playRoulette(game, numSpins, pocket, bet, toPrint):
               str(100*totPocket/numSpins) + '%\n')
     return (totPocket/numSpins)
 
-random.seed(0)
-game = FairRoulette()
-for numSpins in (100, 1000000):
-    for i in range(3):
-        playRoulette(game, numSpins, 2, 1, True)
+# random.seed(0)
+# game = FairRoulette()
+# for numSpins in (100, 1000000):
+#     for i in range(3):
+#         playRoulette(game, numSpins, 2, 1, True)
 
 class EuRoulette(FairRoulette):
     def __init__(self):
