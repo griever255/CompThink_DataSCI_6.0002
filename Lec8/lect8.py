@@ -58,27 +58,28 @@ def getMeansAndSDs(population, sample, verbose = False):
     return popMean, sampleMean,\
            numpy.std(population), numpy.std(sample)
 
-#random.seed(0)         
-#population = getHighs()
-#sample = random.sample(population, 100)
-#getMeansAndSDs(population, sample, True)
+# random.seed(0)         
+# population = getHighs()
+# sample = random.sample(population, 100)
+# getMeansAndSDs(population, sample, True)
 
-#random.seed(0) 
-#population = getHighs()
-#sampleSize = 100
-#numSamples = 1000
-#sampleMeans = []
-#for i in range(numSamples):
+# random.seed(0) 
+# population = getHighs()
+# sampleSize = 100
+# numSamples = 1000
+# sampleMeans = []
+# for i in range(numSamples):
 #    sample = random.sample(population, sampleSize)
 #    popMean, sampleMean, popSD, sampleSD =\
 #       getMeansAndSDs(population, sample, verbose = False)
 #    sampleMeans.append(sampleMean)
-#print('Mean of sample Means =',
+# print('Mean of sample Means =',
 #      round(sum(sampleMeans)/len(sampleMeans), 3))
-#print('Standard deviation of sample means =',
+# print('Standard deviation of sample means =',
 #      round(numpy.std(sampleMeans), 3))
-#makeHist(sampleMeans, 'Means of Samples', 'Mean', 'Frequency')
-#pylab.axvline(x = popMean, color = 'r')
+# makeHist(sampleMeans, 'Means of Samples', 'Mean', 'Frequency')
+# pylab.axvline(x = popMean, color = 'r')
+
 
 def showErrorBars(population, sizes, numTrials):
     xVals = []
@@ -105,48 +106,51 @@ def showErrorBars(population, sizes, numTrials):
     pylab.xlim(0, sizes[-1] + 10)
     pylab.legend()
 
-#random.seed(0)
-#population = getHighs()   
-#showErrorBars(population,
+# random.seed(0)
+# population = getHighs()   
+# showErrorBars(population,
 #              (50, 100, 200, 300, 400, 500, 600), 100)
+
 
 def sem(popSD, sampleSize):
     return popSD/sampleSize**0.5
 
-#sampleSizes = (25, 50, 100, 200, 300, 400, 500, 600)
-#numTrials = 50
-#population = getHighs()
-#popSD = numpy.std(population)
-#sems = []
-#sampleSDs = []
-#for size in sampleSizes:
+# sampleSizes = (25, 50, 100, 200, 300, 400, 500, 600)
+# numTrials = 50
+# population = getHighs()
+# popSD = numpy.std(population)
+# sems = []
+# sampleSDs = []
+# for size in sampleSizes:
 #    sems.append(sem(popSD, size))
 #    means = []
 #    for t in range(numTrials):
 #        sample = random.sample(population, size)
 #        means.append(sum(sample)/len(sample))
 #    sampleSDs.append(numpy.std(means))
-#pylab.plot(sampleSizes, sampleSDs,
+# pylab.plot(sampleSizes, sampleSDs,
 #           label = 'Std of ' + str(numTrials) + ' means')
-#pylab.plot(sampleSizes, sems, 'r--', label = 'SEM')
-#pylab.xlabel('Sample Size')
-#pylab.ylabel('Std and SEM')
-#pylab.title('SD for ' + str(numTrials) + ' Means and SEM')
-#pylab.legend()
+# pylab.plot(sampleSizes, sems, 'r--', label = 'SEM')
+# pylab.xlabel('Sample Size')
+# pylab.ylabel('Std and SEM')
+# pylab.title('SD for ' + str(numTrials) + ' Means and SEM')
+# pylab.legend()
+# pylab.show() 
 
-def plotDistributions():
-    uniform, normal, exp = [], [], []
-    for i in range(100000):
-        uniform.append(random.random())
-        normal.append(random.gauss(0, 1))
-        exp.append(random.expovariate(0.5))
-    makeHist(uniform, 'Uniform', 'Value', 'Frequency')
-    pylab.figure()
-    makeHist(normal, 'Gaussian', 'Value', 'Frequency')
-    pylab.figure()
-    makeHist(exp, 'Exponential', 'Value', 'Frequency')
+# def plotDistributions():
+#     uniform, normal, exp = [], [], []
+#     for i in range(100000):
+#         uniform.append(random.random())
+#         normal.append(random.gauss(0, 1))
+#         exp.append(random.expovariate(0.5))
+#     makeHist(uniform, 'Uniform', 'Value', 'Frequency')
+#     pylab.figure()
+#     makeHist(normal, 'Gaussian', 'Value', 'Frequency')
+#     pylab.figure()
+#     makeHist(exp, 'Exponential', 'Value', 'Frequency')
 
-plotDistributions()
+# plotDistributions()
+# pylab.show()
 
 def getDiffs(population, sampleSizes):
     popStd = numpy.std(population)
@@ -168,11 +172,12 @@ def plotDiffs(sampleSizes, diffs, title, label, color = 'b'):
     pylab.title(title)
     pylab.legend()
 
-#sampleSizes = range(20, 600, 1)
-#diffs = getDiffs(getHighs(), sampleSizes)
-#plotDiffs(sampleSizes, diffs,
+# sampleSizes = range(20, 600, 1)
+# diffs = getDiffs(getHighs(), sampleSizes)
+# plotDiffs(sampleSizes, diffs,
 #          'Sample SD vs Population SD, Temperatures',
 #          label = 'High temps')
+# pylab.show()
 
 
 def compareDists():
@@ -195,11 +200,12 @@ def compareDists():
               'Sample SD vs Population SD',
               'Exponential population', 'r')
 
-#compareDists()  
-#
-#popSizes = (10000, 100000, 1000000)
-#sampleSizes = range(20, 600, 1)
-#for size in popSizes:
+# compareDists()  
+# pylab.show()
+
+# popSizes = (10000, 100000, 1000000)
+# sampleSizes = range(20, 600, 1)
+# for size in popSizes:
 #    population = []
 #    for i in range(size):
 #        population.append(random.expovariate(0.5))
@@ -207,32 +213,33 @@ def compareDists():
 #    plotDiffs(sampleSizes, ediffs,
 #              'Sample SD vs Population SD, Uniform',
 #              'Population size = ' + str(size))
+# pylab.show()
 
-#temps = getHighs()
-#popMean = sum(temps)/len(temps)
-#sampleSize = 200
-#numTrials = 10000
-#
-#random.seed(0)
-#numBad = 0
-#for t in range(numTrials):
-#    posStartingPts = range(0, len(temps) - sampleSize)
-#    start = random.choice(posStartingPts)
-#    sample = temps[start:start+sampleSize]
-#    sampleMean = sum(sample)/sampleSize
-#    se = numpy.std(sample)/sampleSize**0.5
-#    if abs(popMean - sampleMean) > 1.96*se:
-#        numBad += 1
-#print('Fraction outside 95% confidence interval =',
-#      numBad/numTrials)
-#
-#random.seed(0)      
-#numBad = 0
-#for t in range(numTrials):
-#    sample = random.sample(temps, sampleSize)
-#    sampleMean = sum(sample)/sampleSize
-#    se = numpy.std(sample)/sampleSize**0.5
-#    if abs(popMean - sampleMean) > 1.96*se:
-#        numBad += 1
-#print('Fraction outside 95% confidence interval =',
-#      numBad/numTrials)
+temps = getHighs()
+popMean = sum(temps)/len(temps)
+sampleSize = 200
+numTrials = 10000
+
+random.seed(0)
+numBad = 0
+for t in range(numTrials):
+   posStartingPts = range(0, len(temps) - sampleSize)
+   start = random.choice(posStartingPts)
+   sample = temps[start:start+sampleSize]
+   sampleMean = sum(sample)/sampleSize
+   se = numpy.std(sample)/sampleSize**0.5
+   if abs(popMean - sampleMean) > 1.96*se:
+       numBad += 1
+print('Fraction outside 95% confidence interval =',
+     numBad/numTrials)
+
+random.seed(0)      
+numBad = 0
+for t in range(numTrials):
+   sample = random.sample(temps, sampleSize)
+   sampleMean = sum(sample)/sampleSize
+   se = numpy.std(sample)/sampleSize**0.5
+   if abs(popMean - sampleMean) > 1.96*se:
+       numBad += 1
+print('Fraction outside 95% confidence interval =',
+     numBad/numTrials)
