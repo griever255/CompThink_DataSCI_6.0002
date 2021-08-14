@@ -68,7 +68,8 @@ def fitData(fileName):
                + str(round(1/a, 5)))
     pylab.legend(loc = 'best')
     
-#fitData('springData.txt')
+# fitData('springData.txt')
+# pylab.show()
 
    
 def fitData1(fileName):
@@ -135,82 +136,86 @@ def genNoisyParabolicData(a, b, c, xVals, fName):
         f.write(str(yVals[i]) + ' ' + str(xVals[i]) + '\n')
     f.close()
     
-##parameters for generating data
-#xVals = range(-10, 11, 1)
-#a, b, c = 3.0, 0.0, 0.0
-#degrees = (2, 4, 8, 16)
-#
-##generate data
-#random.seed(0)
-#genNoisyParabolicData(a, b, c, xVals,
+# #parameters for generating data
+# xVals = range(-10, 11, 1)
+# a, b, c = 3.0, 0.0, 0.0
+# degrees = (2, 4, 8, 16)
+
+# #generate data
+# random.seed(0)
+# genNoisyParabolicData(a, b, c, xVals,
 #                      'Dataset 1.txt')
-#genNoisyParabolicData(a, b, c, xVals,
+# genNoisyParabolicData(a, b, c, xVals,
 #                      'Dataset 2.txt')
-#
-#xVals1, yVals1 = getData('Dataset 1.txt')
-#models1 = genFits(xVals1, yVals1, degrees)
-#testFits(models1, degrees, xVals1, yVals1,
+
+# xVals1, yVals1 = getData('Dataset 1.txt')
+# models1 = genFits(xVals1, yVals1, degrees)
+# testFits(models1, degrees, xVals1, yVals1,
 #        'DataSet 1.txt')
-#
-#pylab.figure()
-#xVals2, yVals2 = getData('Dataset 2.txt')
-#models2 = genFits(xVals2, yVals2, degrees)
-#testFits(models2, degrees, xVals2, yVals2,
+
+# pylab.figure()
+# xVals2, yVals2 = getData('Dataset 2.txt')
+# models2 = genFits(xVals2, yVals2, degrees)
+# testFits(models2, degrees, xVals2, yVals2,
 #         'DataSet 2.txt')
-#
-#pylab.figure()
-#testFits(models1, degrees, xVals2, yVals2,
+
+# pylab.figure()
+# testFits(models1, degrees, xVals2, yVals2,
 #         'DataSet 2/Model 1')
-#pylab.figure()
-#testFits(models2, degrees, xVals1, yVals1,
+# pylab.figure()
+# testFits(models2, degrees, xVals1, yVals1,
 #         'DataSet 1/Model 2')
+# pylab.show()
 
-##a line
-#xVals = (0,1,2,3)
-#yVals = xVals
-#pylab.plot(xVals, yVals, label = 'Actual values')
-#a,b,c = pylab.polyfit(xVals, yVals, 2)
-#print('a =', round(a, 4), 'b =', round(b, 4),
+# #a line
+# xVals = (0,1,2,3)
+# yVals = xVals
+# pylab.plot(xVals, yVals, label = 'Actual values')
+# a,b,c = pylab.polyfit(xVals, yVals, 2)
+# print('a =', round(a, 4), 'b =', round(b, 4),
 #      'c =', round(c, 4))
-#estYVals = pylab.polyval((a,b,c), xVals)
-#pylab.plot(xVals, estYVals, 'r--', label = 'Predictive values')
-#print('R-squared = ', rSquared(yVals, estYVals))
-#pylab.legend(loc = 'best')
+# estYVals = pylab.polyval((a,b,c), xVals)
+# pylab.plot(xVals, estYVals, 'r--', label = 'Predictive values')
+# print('R-squared = ', rSquared(yVals, estYVals))
+# pylab.legend(loc = 'best')
+# pylab.show()
 
-##OPEN FOR SECOND DEMO
-##
-#pylab.figure()
-##Extend domain
-#xVals = xVals + (20,)
-#yVals = xVals
-#pylab.plot(xVals, yVals, label = 'Actual values')
-#estYVals = pylab.polyval((a,b,c), xVals)
-#pylab.plot(xVals, estYVals, 'r--', label = 'Predictive values')
-#print('R-squared = ', rSquared(yVals, estYVals))
-#pylab.legend(loc = 'best')
+# #OPEN FOR SECOND DEMO
+# #
+# pylab.figure()
+# #Extend domain
+# xVals = xVals + (20,)
+# yVals = xVals
+# pylab.plot(xVals, yVals, label = 'Actual values')
+# estYVals = pylab.polyval((a,b,c), xVals)
+# pylab.plot(xVals, estYVals, 'r--', label = 'Predictive values')
+# print('R-squared = ', rSquared(yVals, estYVals))
+# pylab.legend(loc = 'best')
+# pylab.show()
 
-##OPEN FOR THIRD DEMO
-##almost a line
-#pylab.figure()
-#xVals = (0,1,2,3)
-#yVals = (0,1,2,3.1)
-#pylab.plot(xVals, yVals, label = 'Actual values')
-#model = pylab.polyfit(xVals, yVals, 2)
-#print(model)
-#estYVals = pylab.polyval(model, xVals)
-#pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
-#print('R-squared = ', rSquared(yVals, estYVals))
-#pylab.legend(loc = 'best')
+#OPEN FOR THIRD DEMO
+#almost a line
+pylab.figure()
+xVals = (0,1,2,3)
+yVals = (0,1,2,3.1)
+pylab.plot(xVals, yVals, label = 'Actual values')
+model = pylab.polyfit(xVals, yVals, 2)
+print(model)
+estYVals = pylab.polyval(model, xVals)
+pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
+print('R-squared = ', rSquared(yVals, estYVals))
+pylab.legend(loc = 'best')
+pylab.show()
 
-##OPEN FOR FOURTH DEMO
+#OPEN FOR FOURTH DEMO
 
-#pylab.figure()
-##Extend domain
-#xVals = xVals + (20,)
-#yVals = xVals
-#pylab.plot(xVals, yVals, label = 'Actual values')
-#estYVals = pylab.polyval(model, xVals)
-#pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
-#print('R-squared = ', rSquared(yVals, estYVals))
-#pylab.legend(loc = 'best')
-
+pylab.figure()
+#Extend domain
+xVals = xVals + (20,)
+yVals = xVals
+pylab.plot(xVals, yVals, label = 'Actual values')
+estYVals = pylab.polyval(model, xVals)
+pylab.plot(xVals, estYVals, 'r--', label = 'Predicted values')
+print('R-squared = ', rSquared(yVals, estYVals))
+pylab.legend(loc = 'best')
+pylab.show()
